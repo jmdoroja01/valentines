@@ -1,0 +1,124 @@
+<html>
+  <head></head>
+  <body>
+    <div class="password-container">
+      <img src="images.jfif" height="250" width="250" alt="" />
+      <br />
+      <input type="date" id="password-input" />
+      <button class="submit" id="submit">Submit</button>
+      <p id="error-message" style="color: red; display: none">
+        Wrong password! Try again.
+      </p>
+    </div>
+
+    <div class="container" style="display: none">
+      <img src="looney-tunes-daffy-duck.gif" height="250" width="250" alt="" />
+      <h1>Will you be my Valentine?</h1>
+      <button class="yes-button" id="yes-button">Yes</button>
+
+      <br />
+      <br>
+      <div class="details-container" id="details" style="display: none;">
+        <ul>
+          <li>WHAT: Valentine's Date</li>
+          <li>WHEN: February 14, 2026</li>
+          <li>WHERE: SM Mall Of Asia</li>
+          <li>TIME: 11:00 AM</li>
+          <li>ATTIRE: Denim</li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      // PASSWORD LOGIC
+      const submitButton = document.getElementById("submit");
+      const passwordInput = document.getElementById("password-input");
+      const passwordContainer = document.querySelector(".password-container");
+      const valentineContainer = document.querySelector(".container");
+      const errorMessage = document.getElementById("error-message");
+
+      const correctDate = "2022-07-16";
+
+      submitButton.addEventListener("click", () => {
+        if (passwordInput.value === correctDate) {
+          passwordContainer.style.display = "none";
+          valentineContainer.style.display = "flex";
+          errorMessage.style.display = "none";
+        } else {
+          errorMessage.style.display = "block";
+        }
+      });
+
+      const details = document.getElementById('details');
+
+      const button = document.getElementById("yes-button");
+
+      button.addEventListener("click", () => {
+        let count = 0;
+        const interval = setInterval(() => {
+          createHeart();
+          count++;
+          if (count > 20) clearInterval(interval);
+        }, 50);
+        details.style.display = 'flex';
+      });
+
+
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.style.position = "fixed";
+        const rect = button.getBoundingClientRect();
+        heart.style.left =
+          rect.left + rect.width / 2 + (Math.random() - 0.5) * 50 + "px";
+        heart.style.top = rect.top + "px";
+        heart.style.fontSize = Math.random() * 20 + 20 + "px";
+        heart.style.pointerEvents = "none";
+        heart.style.opacity = 1;
+        heart.style.transition = "transform 2s ease-out, opacity 2s ease-out";
+        document.body.appendChild(heart);
+
+        const xMove = (Math.random() - 0.5) * 200;
+        const yMove = -(Math.random() * 300 + 150);
+        const rotate = (Math.random() - 0.5) * 720;
+
+        requestAnimationFrame(() => {
+          heart.style.transform = `translate(${xMove}px, ${yMove}px) rotate(${rotate}deg)`;
+          heart.style.opacity = 0;
+        });
+
+        setTimeout(() => {
+          heart.remove();
+        }, 2000);
+      }
+    </script>
+
+    <style>
+      .container,
+      .password-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        flex-direction: column;
+      }
+
+      .yes-button,
+      .submit {
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+        margin-top: 20px;
+        border: none;
+        background-color: #ff4d6d;
+        color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      body {
+        overflow: hidden;
+      }
+    </style>
+  </body>
+</html>
