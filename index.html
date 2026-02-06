@@ -15,16 +15,18 @@
       <img src="looney-tunes-daffy-duck.gif" height="400" width="400" alt="" />
       <h1>Will you be my Valentine?</h1>
       <button class="yes-button" id="yes-button">Yes</button>
+      <h3>KEEP PRESSING ME!</h3>
 
       <br />
-      <br>
-      <div class="details-container" id="details" style="display: none;">
+      <br />
+      <div class="details-container" id="details" style="display: none">
+        <img src="cat-smile.gif" alt="" height="400" width="400">
         <ul>
-          <li>WHAT: Valentine's Date</li>
-          <li>WHEN: February 14, 2026</li>
-          <li>WHERE: SM Mall Of Asia</li>
-          <li>TIME: 11:00 AM</li>
-          <li>ATTIRE: Denim</li>
+          <li><h2>WHAT: Valentine's Date</h2></li>
+          <li><h2>WHEN: February 15, 2026</h2></li>
+          <li><h2>WHERE: SM Mall Of Asia</h2></li>
+          <li><h2>TIME: 11:00 AM</h2></li>
+          <li><h2>ATTIRE: Denim</h2></li>
         </ul>
       </div>
     </div>
@@ -49,7 +51,7 @@
         }
       });
 
-      const details = document.getElementById('details');
+      const details = document.getElementById("details");
 
       const button = document.getElementById("yes-button");
 
@@ -60,9 +62,8 @@
           count++;
           if (count > 20) clearInterval(interval);
         }, 50);
-        details.style.display = 'flex';
+        details.style.display = "flex";
       });
-
 
       function createHeart() {
         const heart = document.createElement("div");
@@ -101,6 +102,7 @@
         justify-content: center;
         height: 100vh;
         flex-direction: column;
+        overflow: auto;
       }
 
       .yes-button,
